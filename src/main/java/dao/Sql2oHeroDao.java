@@ -78,5 +78,19 @@ public class Sql2oHeroDao implements HeroDao { //implementing herodao interface
 
     }
 
+    @Override
+    public void clearAllHeroes() {
+        String sql = "DELETE from heroes";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
 
+
+
+
+        }
+
+    }
 }
