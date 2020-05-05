@@ -74,7 +74,7 @@ public class Sql2oSquadDaoTest {
     }
 
     @Test
-    public void deleteByIdDeletesCorrectCategory() throws Exception {
+    public void deleteByIdDeletesCorrectSquad() throws Exception {
         Squad squad = setUpNewSquad();
         squadDao.add(squad);
         squadDao.deleteById(squad.getId());
@@ -82,34 +82,34 @@ public class Sql2oSquadDaoTest {
     }
 
     @Test
-    public void clearAllClearsAllCategories() throws Exception {
+    public void clearAllClearsAllSquads() throws Exception {
         Squad squad = setUpNewSquad();
-        Squad otherCategory = new Squad("Cleaning");
+        Squad otherSquad = new Squad("Mariato",3, "make lemonade");
         squadDao.add(squad);
-        squadDao.add(otherCategory);
+        squadDao.add(otherSquad);
         int daoSize = squadDao.getAll().size();
-        squadDao.clearAllCategories();
+        squadDao.clearAllSquads();
         assertTrue(daoSize > 0 && daoSize > squadDao.getAll().size());
     }
 
     @Test
-    public void getAllTasksByCategoryReturnsTasksCorrectly() throws Exception {
+    public void getAllHeroesBySquadsReturnsHeroesCorrectly() throws Exception {
         Squad squad = setUpNewSquad();
         squadDao.add(squad);
         int squadId = squad.getId();
-        Hero newTask = new Hero("mow the lawn", squadId);
-        Hero otherTask = new Hero("pull weeds", squadId);
-        Hero thirdTask = new Hero("trim hedge", squadId);
-        heroDao.add(newTask);
-        heroDao.add(otherTask); //we are not adding task 3 so we can test things precisely.
+        Hero newHero = new Hero("MEM",3,"mal","mal");
+        Hero otherHero = new Hero("PUP", 13,"cook", "careless");
+        Hero thirdHero = new Hero("REP", 24,"oversee", "lazy");
+        heroDao.add(newHero);
+        heroDao.add(otherHero); //we are not adding task 3 so we can test things precisely.
         assertEquals(2, squadDao.getAllHeroesBySquad(squadId).size());
-        assertTrue(squadDao.getAllHeroesBySquad(squadId).contains(newTask));
-        assertTrue(squadDao.getAllHeroesBySquad(squadId).contains(otherTask));
-        assertFalse(squadDao.getAllHeroesBySquad(squadId).contains(thirdTask)); //things are accurate!
+        assertTrue(squadDao.getAllHeroesBySquad(squadId).contains(newHero));
+        assertTrue(squadDao.getAllHeroesBySquad(squadId).contains(otherHero));
+        assertFalse(squadDao.getAllHeroesBySquad(squadId).contains(thirdHero)); //things are accurate!
     }
 
     // helper method
     public Squad setUpNewSquad(){
-        return new Squad("Yardwork");
+        return new Squad("MC", 3, "transact robbery");
     }
 }
