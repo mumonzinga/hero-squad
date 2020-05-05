@@ -50,25 +50,27 @@ public class Sql2oSquadDaoTest {
     }
 
     @Test
-    public void addedCategoriesAreReturnedFromGetAll() throws Exception {
+    public void addedSquadsAreReturnedFromGetAll() throws Exception {
         Squad squad = setUpNewSquad();
         squadDao.add(squad);
         assertEquals(1, squadDao.getAll().size());
     }
 
     @Test
-    public void noCategoriesReturnsEmptyList() throws Exception {
+    public void noSquadsReturnsEmptyList() throws Exception {
         assertEquals(0, squadDao.getAll().size());
     }
 
     @Test
-    public void updateChangesCategoryContent() throws Exception {
-        String initialDescription = "Yardwork";
-        Squad squad = new Squad (initialDescription);
+    public void updateChangesSquadContent() throws Exception {
+        String initialName = "ES";
+
+        Squad squad = setUpNewSquad();
         squadDao.add(squad);
-        squadDao.update(squad.getId(),"Cleaning");
-        Squad updatedCategory = squadDao.findById(squad.getId());
-        assertNotEquals(initialDescription, updatedCategory.getName());
+        squadDao.update(squad.getId(),"MC", "transact robbery", 3 );
+        Squad updatedSquad = squadDao.findById(squad.getId());
+        assertNotEquals(initialName, updatedSquad.getName());
+
     }
 
     @Test
