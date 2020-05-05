@@ -48,6 +48,12 @@ public class HeroTest {
         assertEquals("madem", hero.getWeakness("madem"));
     }
 
+    @Test
+    public void getCreatedAtInstantiatesWithCurrentTimeToday() throws Exception {
+        Hero hero = setUpNewHero();
+        assertEquals(LocalDateTime.now().getDayOfWeek(), hero.getCreatedAt().getDayOfWeek());
+    }
+
     //helper methods
     public Hero setUpNewHero(){
         return new Hero("EL", 30, "madem", "madem");
