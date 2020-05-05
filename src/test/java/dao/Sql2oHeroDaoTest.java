@@ -21,6 +21,16 @@ public class Sql2oHeroDaoTest {
     public void tearDown() throws Exception {
         conn.close();
     }
+
+    @Test
+    public void addingHeroSetId() throws Exception {
+        Hero hero = setUpNewHero();
+        int originalHeroId = hero.getId();
+        heroDao.add(hero);
+        assertNotEquals(originalHeroId, hero.getId());
+    }
+
+
 }
 
 
