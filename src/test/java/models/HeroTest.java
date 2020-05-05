@@ -41,6 +41,13 @@ public class HeroTest {
         assertEquals("madem", hero.getPower("madem"));
     }
 
+
+    @Test
+    public void HeroInstantiatesWithWeakness_true() throws Exception {
+        Hero hero = setUpNewHero();
+        assertEquals("madem", hero.getWeakness("madem"));
+    }
+
     //helper methods
     public Hero setUpNewHero(){
         return new Hero("EL", 30, "madem", "madem");
