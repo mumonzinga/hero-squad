@@ -34,11 +34,11 @@ public class Sql2oSquadDaoTest {
     }
 
     @Test
-    public void addingCategorySetsId() throws Exception {
+    public void addingSquadSetsId() throws Exception {
         Squad squad = setUpNewSquad();
-        int originalCategoryId = squad.getId();
+        int originalSquadId = squad.getId();
         squadDao.add(squad);
-        assertNotEquals(originalCategoryId, squad.getId());
+        assertNotEquals(originalSquadId, squad.getId());
     }
 
     @Test
