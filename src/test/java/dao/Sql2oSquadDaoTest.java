@@ -42,11 +42,11 @@ public class Sql2oSquadDaoTest {
     }
 
     @Test
-    public void existingCategoriesCanBeFoundById() throws Exception {
+    public void existingSquadsCanBeFoundById() throws Exception {
         Squad squad = setUpNewSquad();
         squadDao.add(squad);
-        Squad foundCategory = squadDao.findById(squad.getId());
-        assertEquals(squad, foundCategory);
+        Squad foundSquad = squadDao.findById(squad.getId());
+        assertEquals(squad, foundSquad);
     }
 
     @Test
