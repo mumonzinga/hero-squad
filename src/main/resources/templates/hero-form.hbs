@@ -1,0 +1,56 @@
+{{#partial "content"}}
+
+    {{#if editHero}}
+        <h1>Edit {{hero.name}} Hero's Profile!</h1>
+        <form action="/heroes/{{hero.id}}" method="post">
+            <br>
+            <label for="name">Edit this Hero's name</label>
+            <input id="name" name="name" type="text" value="{{hero.name}}">
+            <br>
+            <label for="age">Edit this Hero's age</label>
+            <input id="age" name="age" type="number" value="{{hero.age}}">
+            <br>
+            <label for="power">Edit this Hero's Powers</label>
+            <input id="power" name="power" type="text" value="{{hero.power}}">
+            <br>
+            <label for="weakness">Edit this Hero's Weaknesses</label>
+            <input id="weakness" name="weakness" type="text" value="{{hero.weakness}}">
+            <br>
+            <label for="squadId">Update this Hero's Squad:</label>
+            <select id="squadId" name="squadId">
+                
+                {{#each squads}}
+                    <option value="{{id}}">{{name}}</option>
+                    <option value="{{id}}">{{cause}}</option>
+                    <option value="{{id}}">{{size}}</option>
+
+
+                {{/each}}
+                
+            </select>
+            <p>Don't see a Squad you like?<a href="/squads/new">Add a new Squad.</a></p>
+            <button type="submit" class="btn btn-default">Add a Squad!</button>
+        </form>
+    {{else}}
+        <h2>Add a new Hero!</h2>
+
+        <form action="/heroes" method="post">
+            {{#if squads}}
+                <label for="name">Hero's Name</label>
+                <input id="name" name="name" type="text">
+                <label for="squadId">Which Squad Do you want to be part of?</label>
+                <select id="squadId" name="squadId">
+                    {{#each squads}}
+                        <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <p>Don't see a Squad you like?<a href="/squads/new">Add a new Squad.</a></p>
+            {{else}}
+                <h3> You'll need to add a new Squad before you add an Hero. <a href="/squads/new">Add one here.</a> </h3>
+            {{/if}}
+            <button type="submit" class="btn btn-default">Add Squad!</button>
+        </form>
+    {{/if}}
+{{/partial}}
+
+{{> layout.hbs}}
