@@ -29,5 +29,16 @@ public class Sql2oHeroDao implements HeroDao { //implementing herodao interface
     }
 
 
+    @Override
+    public List<Hero> getAll() {
+        try (Connection con = sql2o.open()){ //open a connection
+            return con.createQuery("SELECT * FROM heroes") // raw sql
+                .executeAndFetch(Hero.class); //fetch a list
+        }
+    }
 
+    @Override
+    public Hero findById(int id) {
+
+    }
 }
