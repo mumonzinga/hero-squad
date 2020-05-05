@@ -39,6 +39,11 @@ public class Sql2oHeroDao implements HeroDao { //implementing herodao interface
 
     @Override
     public Hero findById(int id) {
+        try(Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM heroes WHERE id =:id")
+                    .addParameter("id", id) //key/value pair, key must match above
+                    .executeAndFetchFirst(Hero.class); //fetch an individual item
+        }
 
     }
 }
