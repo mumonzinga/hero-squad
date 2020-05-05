@@ -1,0 +1,25 @@
+{{#partial "content"}}
+
+<div class="container">
+    <div class="view" style="background-image: url('https://images8.alphacoders.com/815/815404.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <h1 class="h1-reponsive text-info" >Hero list!</h1>
+        {{#if heroes}}
+        <ul class="list-group" >
+            {{#foreach hero.heroes}}
+            <li class="list-group-item" >
+                <p>{{hero.name}}</p>
+                <ul class="list-group">
+                    <li class="list-group-item">hero {{hero.name}}'s Age: {{hero.age}}</li>
+                    <li class="list-group-item">Powers: {{hero.power}}</li>
+                    <li class="list-group-item">Weaknesses: {{hero.weakness}}</li>
+                </ul>
+            </li>
+            {{/foreach}}
+        </ul>
+        {{else}}
+        h4 class="h4-reponsive text-info animate fadeIn"><strong>No Hero Added !</strong></h4>
+        {{end}}
+    </div>
+        {{/if}}
+</div>
+        {{/partial}}
