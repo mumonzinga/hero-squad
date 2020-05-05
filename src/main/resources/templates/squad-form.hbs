@@ -1,0 +1,47 @@
+{{#partial "content"}}
+    {{#if editSquad}}
+        <div class="jumbotron text-center">
+            <h2 class="h2-reponsive text-info animated wobble"><strong>Edit this Squad! <i class="fas fa-users animate rotateIn infinite"></i></strong></h2>
+            <form action="/squads/{{squad.id}}" method="post">
+                <div class="form-group md-form">>
+                    <label class="active text-white" for="name">Edit this Squad's name</label>
+                    <input id="newSquadName" name="newSquadName" type="text" class="form-control text-white" value="{{squad.name}}">
+                </div>
+                <button type="submit" class="btn aqua-gradient text-white">Go!</button>
+                <h1>Hooray! Our Squad's name is now {{squad.name}}. </h1>
+            </form>
+        </div>
+    {{else}}
+        <div class="jumbotron text-center">>
+            <h2 class="h2-reponsive text-info animated wobble"><strong>Add a new squad <i class="fas fa-users animate rotateIn infinite"></i></strong></h2>
+
+
+            <form action="/squads" method="post">
+                <div class="form-group md-form">>
+
+                    <label class="active text-white" for="name">Squad Name</label>
+                    <input id="name" name="name" type="text" class="form-control text-white">
+                </div>
+
+                <div class="form-group md-form">>
+
+                    <label class="active text-white" for="name">Squad Size</label>
+                    <input id="size" name="size" type="number" class="form-control text-white">
+                </div>
+
+                <div class="form-group md-form">>
+
+                    <label class="active text-white" for="name">Squad Cause</label>
+                    <input id="cause" name="cause" type="text" class="form-control text-white">
+                </div>
+                <button type="submit" class="btn aqua-gradient text-white">Add Squad</button>
+
+
+
+
+            </form>
+        </div>
+    {{/if}}
+{{/partial}}
+
+{{>layout.hbs}}
