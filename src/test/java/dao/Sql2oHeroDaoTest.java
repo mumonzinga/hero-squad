@@ -16,6 +16,11 @@ public class Sql2oHeroDaoTest {
         heroDao = new Sql2oHeroDao(sql2o);
         conn = sql2o.open(); // keep the connection open through the entire test so it does not get erased
     }
+
+    @After
+    public void tearDown() throws Exception {
+        conn.close();
+    }
 }
 
 
