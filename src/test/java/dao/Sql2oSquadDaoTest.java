@@ -4,6 +4,7 @@ package dao;
 import models.Squad;
 import models.Hero;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.sql2o.Connection;
@@ -15,24 +16,31 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class Sql2oSquadDaoTest {
-    private Sql2oSquadDao squadDao;
-    private Sql2oHeroDao heroDao;
-    private Connection conn;
+    private static Sql2oSquadDao squadDao;
+    private static Sql2oHeroDao heroDao;
+    private static Connection conn;
 
     @Before
     public void setUp() throws Exception {
-        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        String connectionString = "jdbc:postgresql://localhost:5432/herosquad_test";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         squadDao = new Sql2oSquadDao(sql2o);
         heroDao = new Sql2oHeroDao(sql2o);
         conn = sql2o.open();
     }
 
-    @After
+    @After                                          // run after every test
     public void tearDown() throws Exception {
-        conn.close();
+        System.out.println("clearing database");
+        squadDao.clearAllSquads();           // clear all categories after every test
+        heroDao.clearAllHeroes();                    // clear all tasks after every test
     }
 
+    @AfterClass                                     //run once after all tests in this file completed
+    public static void shutDown() throws Exception{
+        conn.close();                               // close connection once after this entire test file is finished
+        System.out.println("connection closed");
+    }
     @Test
     public void addingSquadSetsId() throws Exception {
         Squad squad = setUpNewSquad();
