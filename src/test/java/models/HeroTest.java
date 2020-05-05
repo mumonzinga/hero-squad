@@ -18,8 +18,18 @@ public class HeroTest {
     }
 
     @Test
-    public void Hero_instantiatesCorrectly_true() {
-        Hero myHero = new Hero("EL", 30, "madem", "madem");
-        assertEquals(true, myHero instanceof Hero);
+    public void NewHeroObjectGetCorrectlyCreated_true() throws Exception{
+        Hero hero = setUpNewHero();
+        assertEquals(true, hero instanceof Hero);
+    }
+
+    @Test
+    public void getName_forHeroesName_String() {
+        Hero myH
+    }
+
+    //helper methods
+    public Hero setUpNewHero(){
+        return new Hero("EL", 30, "madem", "madem");
     }
 }
