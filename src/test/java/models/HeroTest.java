@@ -24,8 +24,9 @@ public class HeroTest {
     }
 
     @Test
-    public void getName_forHeroesName_String() {
-        Hero myH
+    public void HeroInstantiatesWithName_true() throws Exception {
+        Hero hero = setUpNewHero();
+        assertEquals("EL", hero.getName());
     }
 
     //helper methods
