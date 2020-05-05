@@ -1,0 +1,33 @@
+package dao;
+
+import models.Hero;
+import org.sql2o.*;
+import java.util.List;
+
+public class Sql2oHeroDao implements HeroDao { //implementing herodao interface
+
+    private final Sql2o sql2o;
+
+    public Sql2oHeroDao(Sql2o sql2o) {
+        this.sql2o = sql2o;  //making sql2o public so as to call methods on it
+    }
+
+    @Override
+    public void add(Hero hero) {
+        String sql = "INSERT INTO heroes (name, age, power, weakness) VALUES (:name, :age, :power, :weakness)"; //raw sql
+        try (Connection con = sql2o.open()) { //try open a connection
+            int id = (int) con.createQuery(sql, true) //make a new variable
+                    .bind(hero)
+                    .executeUpdate() // run it all
+                    .getKey(); //int id is now the row number(row key) of the db
+            hero.setId(id); //update object to set id now from db
+        } catch (Sql2oException ex) {
+            System.out.println(ex); //oops we have an error!
+
+
+        }
+    }
+
+
+
+}
