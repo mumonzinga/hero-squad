@@ -29,6 +29,12 @@ public class HeroTest {
         assertEquals("EL", hero.getName());
     }
 
+    @Test
+    public void HeroInstantiatesWithAge_true() throws Exception {
+        Hero hero = setUpNewHero();
+        assertEquals(30,hero.getAge(30) );
+    }
+
     //helper methods
     public Hero setUpNewHero(){
         return new Hero("EL", 30, "madem", "madem");
