@@ -14,17 +14,17 @@ import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-public class Sql2oCategoryDaoTest {
-    private Sql2oCategoryDao categoryDao;
-    private Sql2oTaskDao taskDao;
+public class Sql2oSquadDaoTest {
+    private Sql2oSquadDao squadDao;
+    private Sql2oHeroDao heroDao;
     private Connection conn;
 
     @Before
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
-        categoryDao = new Sql2oCategoryDao(sql2o);
-        taskDao = new Sql2oTaskDao(sql2o);
+        squadDao = new Sql2oSquadDao(sql2o);
+        heroDao = new Sql2oHeroDao(sql2o);
         conn = sql2o.open();
     }
 
@@ -35,79 +35,79 @@ public class Sql2oCategoryDaoTest {
 
     @Test
     public void addingCategorySetsId() throws Exception {
-        Category category = setupNewCategory();
-        int originalCategoryId = category.getId();
-        categoryDao.add(category);
-        assertNotEquals(originalCategoryId, category.getId());
+        Squad squad = setUpNewSquad();
+        int originalCategoryId = squad.getId();
+        squadDao.add(squad);
+        assertNotEquals(originalCategoryId, squad.getId());
     }
 
     @Test
     public void existingCategoriesCanBeFoundById() throws Exception {
-        Category category = setupNewCategory();
-        categoryDao.add(category);
-        Category foundCategory = categoryDao.findById(category.getId());
-        assertEquals(category, foundCategory);
+        Squad squad = setUpNewSquad();
+        squadDao.add(squad);
+        Squad foundCategory = squadDao.findById(squad.getId());
+        assertEquals(squad, foundCategory);
     }
 
     @Test
     public void addedCategoriesAreReturnedFromGetAll() throws Exception {
-        Category category = setupNewCategory();
-        categoryDao.add(category);
-        assertEquals(1, categoryDao.getAll().size());
+        Squad squad = setUpNewSquad();
+        squadDao.add(squad);
+        assertEquals(1, squadDao.getAll().size());
     }
 
     @Test
     public void noCategoriesReturnsEmptyList() throws Exception {
-        assertEquals(0, categoryDao.getAll().size());
+        assertEquals(0, squadDao.getAll().size());
     }
 
     @Test
     public void updateChangesCategoryContent() throws Exception {
         String initialDescription = "Yardwork";
-        Category category = new Category (initialDescription);
-        categoryDao.add(category);
-        categoryDao.update(category.getId(),"Cleaning");
-        Category updatedCategory = categoryDao.findById(category.getId());
+        Squad squad = new Squad (initialDescription);
+        squadDao.add(squad);
+        squadDao.update(squad.getId(),"Cleaning");
+        Squad updatedCategory = squadDao.findById(squad.getId());
         assertNotEquals(initialDescription, updatedCategory.getName());
     }
 
     @Test
     public void deleteByIdDeletesCorrectCategory() throws Exception {
-        Category category = setupNewCategory();
-        categoryDao.add(category);
-        categoryDao.deleteById(category.getId());
-        assertEquals(0, categoryDao.getAll().size());
+        Squad squad = setUpNewSquad();
+        squadDao.add(squad);
+        squadDao.deleteById(squad.getId());
+        assertEquals(0, squadDao.getAll().size());
     }
 
     @Test
     public void clearAllClearsAllCategories() throws Exception {
-        Category category = setupNewCategory();
-        Category otherCategory = new Category("Cleaning");
-        categoryDao.add(category);
-        categoryDao.add(otherCategory);
-        int daoSize = categoryDao.getAll().size();
-        categoryDao.clearAllCategories();
-        assertTrue(daoSize > 0 && daoSize > categoryDao.getAll().size());
+        Squad squad = setUpNewSquad();
+        Squad otherCategory = new Squad("Cleaning");
+        squadDao.add(squad);
+        squadDao.add(otherCategory);
+        int daoSize = squadDao.getAll().size();
+        squadDao.clearAllCategories();
+        assertTrue(daoSize > 0 && daoSize > squadDao.getAll().size());
     }
 
     @Test
     public void getAllTasksByCategoryReturnsTasksCorrectly() throws Exception {
-        Category category = setupNewCategory();
-        categoryDao.add(category);
-        int categoryId = category.getId();
-        Task newTask = new Task("mow the lawn", categoryId);
-        Task otherTask = new Task("pull weeds", categoryId);
-        Task thirdTask = new Task("trim hedge", categoryId);
-        taskDao.add(newTask);
-        taskDao.add(otherTask); //we are not adding task 3 so we can test things precisely.
-        assertEquals(2, categoryDao.getAllTasksByCategory(categoryId).size());
-        assertTrue(categoryDao.getAllTasksByCategory(categoryId).contains(newTask));
-        assertTrue(categoryDao.getAllTasksByCategory(categoryId).contains(otherTask));
-        assertFalse(categoryDao.getAllTasksByCategory(categoryId).contains(thirdTask)); //things are accurate!
+        Squad squad = setUpNewSquad();
+        squadDao.add(squad);
+        int squadId = squad.getId();
+        Hero newTask = new Hero("mow the lawn", squadId);
+        Hero otherTask = new Hero("pull weeds", squadId);
+        Hero thirdTask = new Hero("trim hedge", squadId);
+        heroDao.add(newTask);
+        heroDao.add(otherTask); //we are not adding task 3 so we can test things precisely.
+        assertEquals(2, squadDao.getAllHeroesBySquad(squadId).size());
+        assertTrue(squadDao.getAllHeroesBySquad(squadId).contains(newTask));
+        assertTrue(squadDao.getAllHeroesBySquad(squadId).contains(otherTask));
+        assertFalse(squadDao.getAllHeroesBySquad(squadId).contains(thirdTask)); //things are accurate!
     }
 
     // helper method
-    public Category setupNewCategory(){
-        return new Category("Yardwork");
+    public Squad setUpNewSquad(){
+        return new Squad("Yardwork");
     }
 }
