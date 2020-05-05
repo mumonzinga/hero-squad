@@ -70,7 +70,7 @@ public class Sql2oHeroDaoTest {
     }
 
     @Test
-    public void clearAllClearsAll() throws Exception {
+    public void clearAllHeroes() throws Exception {
         Hero hero = setUpNewHero();
         Hero otherHero = new Hero("MC", 30, "mari", "mari");
         heroDao.add(hero);
@@ -78,6 +78,14 @@ public class Sql2oHeroDaoTest {
         int daoSize = heroDao.getAll().size();
         heroDao.clearAllHeroes();
         assertTrue(daoSize > 0 && daoSize > heroDao.getAll().size()); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
+    }
+
+    @Test
+    public void cIdIsReturnedCorrectly() throws Exception {
+        Hero hero = setUpNewHero();
+        int originalCatId = hero.getSquadId();
+        heroDao.add(hero);
+        assertEquals(originalCatId, heroDao.findById(hero.getId()).getSquadId());
     }
 
 
