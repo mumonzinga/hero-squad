@@ -30,7 +30,9 @@ public class Sql2oHeroDaoTest {
         assertNotEquals(originalHeroId, hero.getId());
     }
 
-
+    public Hero setUpNewHero() {
+        return new Hero("EL", 30, "madem", "madem");
+    }
 }
 
 
