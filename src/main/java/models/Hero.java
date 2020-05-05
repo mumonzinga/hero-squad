@@ -8,6 +8,7 @@ public class Hero {
     private String weakness;
     private int id;
     private LocalDateTime createdAt;
+    private int squadId;
 
     public Hero(String name,int age, String power, String weakness) {
         this.name = name;
@@ -15,9 +16,15 @@ public class Hero {
         this.power = power;
         this.weakness = weakness;
         this.createdAt =LocalDateTime.now();
-
+        this.squadId = squadId;
     }
 
+    public int getSquadId() {
+        return squadId;
+    }
+    public void setSquadId(int squadId) {
+        this.squadId = squadId;
+    }
     public int getId() {
         return id;
     }
@@ -25,6 +32,7 @@ public class Hero {
     public void setId(int id){
         this.id = id;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -35,6 +43,7 @@ public class Hero {
 
         if (age != hero.age) return false;
         if (id != hero.id) return false;
+        if (squadId != hero.squadId) return false;
         if (!name.equals(hero.name)) return false;
         if (!power.equals(hero.power)) return false;
         if (!weakness.equals(hero.weakness)) return false;
@@ -49,6 +58,7 @@ public class Hero {
         result = 31 * result + weakness.hashCode();
         result = 31 * result + id;
         result = 31 * result + createdAt.hashCode();
+        result = 31 * result + squadId;
         return result;
     }
 

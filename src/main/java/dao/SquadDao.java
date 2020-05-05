@@ -17,11 +17,11 @@ public interface SquadDao {
         List<Hero> getAllHeroesBySquad(int squadId);
 
         //UPDATE
-        void update(int id,int size, String name, String cause);
+        void update(int id, String name, String cause,int size, int squadId);
 
         //DELETE
         void deleteById(int id);
-        void clearAllHeroes();
+        void clearAllSquads();
 
 
 }

@@ -3,10 +3,7 @@ package dao;
 
 import models.Squad;
 import models.Hero;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -20,10 +17,10 @@ public class Sql2oSquadDaoTest {
     private static Sql2oHeroDao heroDao;
     private static Connection conn;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void setUp() throws Exception {
         String connectionString = "jdbc:postgresql://localhost:5432/herosquad_test";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        Sql2o sql2o = new Sql2o(connectionString,null, null);
         squadDao = new Sql2oSquadDao(sql2o);
         heroDao = new Sql2oHeroDao(sql2o);
         conn = sql2o.open();
