@@ -20,7 +20,7 @@ public class Sql2oSquadDaoTest {
     @BeforeClass
     public static void setUp() throws Exception {
         String connectionString = "jdbc:postgresql://localhost:5432/herosquad_test";
-        Sql2o sql2o = new Sql2o(connectionString,null, null);
+        Sql2o sql2o = new Sql2o(connectionString,"mumo", "kyalelove");
         squadDao = new Sql2oSquadDao(sql2o);
         heroDao = new Sql2oHeroDao(sql2o);
         conn = sql2o.open();

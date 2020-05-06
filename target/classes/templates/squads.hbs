@@ -1,0 +1,25 @@
+{{#partial "content"}}
+
+</section class="wrapper">
+<div class="view" style="background-image: url('https://images8.alphacoders.com/815/815404.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="jumbotron text-center">
+        <h1 class="h1-reponsive text-info" ><strong>All Squads <i class="fas fa-id-card"></strong></i></h1>
+        <a href="/squads/new" class="btn btn-outline-white ">Add New Squad  <i class="fas fa-user-plus animate rotateIn infinite"></i></a>
+        <br>
+
+        <div class="list-group text-white overflow-auto">
+            {{#foreach squad.squads}}
+            <a href="/squads/$squad.getId()" class="list-group-item list-group-item-action flex-column align-items-start  stylish-color-dark text-white overflow-auto">
+                <div class="d-flex w-75 justify-content-between overflow-auto">
+                    <h4 class="list-group-item-heading text-info">{{squad.name}} <span class="badge">{{squad.heroes.size}}</span></h4>
+                    <span >{{squad.size}} max number of heroes</span>
+                </div>
+                <p class="mb-1">{{squad.cause}}</p>
+            </a>
+            {{/foreach}}
+        </div>
+    </div>
+</div>
+
+        </section>
+{{/partial}}

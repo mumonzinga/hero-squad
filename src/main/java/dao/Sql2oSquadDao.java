@@ -46,20 +46,21 @@ public class Sql2oSquadDao implements SquadDao {
         }
     }
 
-    @Override
-    public void update(int id, String newName, String newCause, int newSize){
-        String sql = "UPDATE squads SET (name, cause, size ) = (:name, :cause, :size) WHERE id=:id";
-        try(Connection con = sql2o.open()){
-            con.createQuery(sql)
-                    .addParameter("name", newName)
-                    .addParameter("id", id)
-                    .addParameter("cause", newCause)
-                    .addParameter("size", newSize)
-                    .executeUpdate();
-        } catch (Sql2oException ex) {
-            System.out.println(ex);
-        }
-    }
+     @Override
+    public void update(int newId, String newName, String newCause, int newSize) {
+                String sql = "UPDATE squads SET (name, cause, size) = (:name, :cause, :size) WHERE id=:id";
+                try(Connection con = sql2o.open()){
+                    con.createQuery(sql)
+                            .addParameter("name", newName)
+                            .addParameter("id", newId)
+                            .addParameter("cause", newCause)
+                            .addParameter("size", newSize)
+                            .executeUpdate();
+                } catch (Sql2oException ex) {
+                    System.out.println(ex);
+                }
+            }
+
 
     @Override
     public void deleteById(int id) {
@@ -92,4 +93,6 @@ public class Sql2oSquadDao implements SquadDao {
                     .executeAndFetch(Hero.class);
         }
     }
-}
+
+
+    }

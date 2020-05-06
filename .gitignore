@@ -21,6 +21,8 @@ Icon
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
+"browser": "dist/handlebars.js",
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
@@ -70,6 +72,8 @@ gradle
 gradlew.bat
 gradlew
 settings.gradle
+
+
 
 #IntelliJ
 .idea

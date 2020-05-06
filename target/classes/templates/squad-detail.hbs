@@ -1,0 +1,34 @@
+{{#partial "content"}}
+    <div class="jumbotron text-center">
+        <h1 class="h1-reponsive text-info" ><strong> {{category.name}}Squad Heroes </strong></h1>
+        <br>
+        {{#if squad.heroes.size.[0]}}
+            <div class="list-group">
+                {{#each heroes}}
+
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start stylish-color-dark text-white">
+                                <div class="d-flex w-75 justify-content-between">
+                                    <h3 class="list-group-item-heading text-info"><a href="/squads/{{squad.id}}/heroes/{{id}}">{{name}}</a> </h3>
+                                    <span><a href="/squads/{{squad.id}}/heroes/{{id}}">{{age}}</a> </span>
+                                </div>
+                                <p class="list-group-item-text">Powers: <a href="/squads/{{squad.id}}/heroes/{{id}}">{{power}}</a>
+                                    <br> Weaknesses: <a href="/squads/{{squad.id}}/heroes/{{id}}">{{weakness}}</a></p>
+                            </a>
+                {{/each}}
+                        </div>
+        {{else}}
+                        <p>No hero added!</p>
+
+                        <br>
+                        <a  href="/squads/{{squad.id}}/edit"> class="btn btn-outline-white ">Edit {{category.name}} squad <i class="fas fa-user-plus animate rotateIn infinite"></i></a>
+                        <a href="/squads{{squads}}" class="btn btn-outline-white ">All Squads</a>
+                        <a href="/squads/{{squad.id}}/delete" class="btn btn-outline-white">Delete {{squad.name}}</a>
+                    </div>
+
+
+
+
+            </div>
+        {{/if}}
+    </div>
+{{/partial}}

@@ -1,7 +1,5 @@
-plugins {
-    id 'java'
-    id 'application'
-}
+apply plugin:'java'
+apply plugin: 'application'
 
 group 'herosquad'
 version '1.0-SNAPSHOT'
@@ -21,3 +19,6 @@ dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
     compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
 }
+applicationName = "hero-squad"
+mainClassName = 'App'
+task stage(dependsOn: ['clean', 'installDist'])
