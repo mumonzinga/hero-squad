@@ -25,16 +25,16 @@ public class App {
         public static void main (String[] args){
 
             port(getHerokuAssignedPort());
-            staticFileLocation("/public");
+            staticFileLocation("/public"); // instructing spark to locate static files in the public directory
             String connectionString = "jdbc:postgresql://localhost:5432/herosquad";
             Sql2o sql2o = new Sql2o(connectionString, "mumo", "kyalelove");
             Sql2oHeroDao heroDao = new Sql2oHeroDao(sql2o);
             Sql2oSquadDao squadDao = new Sql2oSquadDao(sql2o);
 
-
+               
             //get: show all heroes in all squads and show all squads
-            get("/", (req, res) -> {
-                Map<String, Object> model = new HashMap<>();
+            get("/", (req, res) -> { //verb,root, callback = route, root path/route, functions as the homepage 
+                Map<String, Object> model = new HashMap<>();//String=key, object=value
                 List<Squad> allSquads = squadDao.getAll();
                 model.put("squads", allSquads);
                 List<Hero> heroes = heroDao.getAll();
