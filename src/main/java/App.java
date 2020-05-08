@@ -34,13 +34,13 @@ public class App {
                
             //get: show all heroes in all squads and show all squads
             get("/", (req, res) -> { //verb,root, callback = route, root path/route, functions as the homepage 
-                Map<String, Object> model = new HashMap<>();//String=key, object=value
+                Map<String, Object> model = new HashMap<>();//String=key, object=value, new model made to store information
                 List<Squad> allSquads = squadDao.getAll();
                 model.put("squads", allSquads);
                 List<Hero> heroes = heroDao.getAll();
                 model.put("heroes", heroes);
-                return new ModelAndView(model, "index.hbs");
-            }, new HandlebarsTemplateEngine());
+                return new ModelAndView(model, "index.hbs");// assembling individual pieces and rendering
+            }, new HandlebarsTemplateEngine());//stiching of miscellaneous bits and pieces to one cohesive html page
 
             //get: show a form to create a new squad
             get("/squads/new", (req, res) -> {
