@@ -1,7 +1,9 @@
+{{#block "header"}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <header>
+    
         <title>{{#block "title"}}HeroSquad{{/block}}</title>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -23,12 +25,17 @@
                 crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    </header>
+    
         </head>
 <body>
+<!-- begin inner template-->
+<div class="container">
 {{#block "content"}}
 
 {{/block}}
+</div>
+<!--end inner template-->
+{{#block "footer"}}
 </body>
 </html>
-
+{{/block}}
